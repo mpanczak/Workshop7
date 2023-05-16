@@ -12,11 +12,6 @@ public class BookController {
 
     MockBookService mockBookService = new MockBookService();
 
-//    @RequestMapping("/helloBook")
-//    public Book helloBook() {
-//        return new Book(1L, "9788324631766", "Thinking in Java",
-//                "Bruce Eckel", "Helion", "programming");
-//    }
     @GetMapping("")
     public List<Book> acquireAllBooks() {
         return mockBookService.reciveAllBooksList();
@@ -31,8 +26,9 @@ public class BookController {
         return mockBookService.searchBookById(id);
     }
     @PutMapping("")
-    public Book editBook() {
-        return null; //TODO
+    public String editBook(@RequestBody Book book) {
+        mockBookService.editBook(book);
+        return "Book " + book.getId() + " modified";
     }
     @DeleteMapping("/{id}")
     public String deleteBook(@PathVariable("id") long id) {
