@@ -32,6 +32,8 @@ public class MockBookService {
         return null;
     }
     public void createBook(Book book) {
+        book.setId(nextId);
+        nextId++;
         list.add(book);
     }
     public Book editBook(long id) {
